@@ -1,7 +1,8 @@
-package com.example.mameteo
+package city
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.mameteo.R
 
 class CityActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

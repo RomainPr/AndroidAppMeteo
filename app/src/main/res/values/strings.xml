@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MaMeteo</string>
+    <string name="createcity_title">New City Name</string>
+    <string name="createcity_positive">Create City</string>
+    <string name="createcity_cancel">Cancel</string>
+    <string name="createcity_hint">New York, London...</string>
+    <string name="menu_create_city">Create City</string>
 </resources>
