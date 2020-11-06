@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaMeteo">
+        <activity android:name="weather.WeatherActivity"/>
         <activity android:name="city.CityActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

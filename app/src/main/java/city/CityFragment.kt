@@ -14,6 +14,13 @@ import utils.toast
 
 class CityFragment : Fragment(), CityAdapter.CityItemListener {
 
+    interface CityFragmentListener {
+        fun onCitySelected(city:City)
+        fun onEmptyCities()
+    }
+
+    var listener : CityFragmentListener? = null
+
     private lateinit var database: Database
     private lateinit var cities: MutableList<City>
     private lateinit var recyclerview: RecyclerView
@@ -80,11 +87,18 @@ class CityFragment : Fragment(), CityAdapter.CityItemListener {
     }
 
     override fun onCitySelected(city: City) {
-        TODO("Not yet implemented")
+        listener?.onCitySelected(city)
     }
 
     override fun onCityDeleted(city: City) {
         showDeleteDialog(city)
+    }
+
+    fun selectFirstSity() {
+        when(cities.isEmpty()) {
+            true -> listener?.onEmptyCities()
+            false -> onCitySelected(cities.first())
+        }
     }
 
     private fun showDeleteDialog(city: City) {
@@ -102,6 +116,7 @@ class CityFragment : Fragment(), CityAdapter.CityItemListener {
         if (database.deleteCity(city)) {
             cities.remove(city)
             adapter.notifyDataSetChanged()
+            selectFirstSity()
             context?.toast(getString(R.string.city_message_info_city_deleted, city.name))
         } else {
             context?.toast(getString(R.string.city_message_error_could_not_delete_city, city.name))
