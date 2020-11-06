@@ -94,7 +94,7 @@ class CityFragment : Fragment(), CityAdapter.CityItemListener {
         showDeleteDialog(city)
     }
 
-    fun selectFirstSity() {
+   private fun selectFirstCity() {
         when(cities.isEmpty()) {
             true -> listener?.onEmptyCities()
             false -> onCitySelected(cities.first())
@@ -116,7 +116,7 @@ class CityFragment : Fragment(), CityAdapter.CityItemListener {
         if (database.deleteCity(city)) {
             cities.remove(city)
             adapter.notifyDataSetChanged()
-            selectFirstSity()
+            selectFirstCity()
             context?.toast(getString(R.string.city_message_info_city_deleted, city.name))
         } else {
             context?.toast(getString(R.string.city_message_error_could_not_delete_city, city.name))
